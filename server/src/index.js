@@ -1,8 +1,8 @@
-const express = requeire('express')
-const bodyParser = requeire('body-parser')
-const  cors = requeire('cors')
-const morgan = requeire('morgan')
-const config = requeire('./config/config')
+const express = require('express')
+const bodyParser = require('body-parser')
+const  cors = require('cors')
+const morgan = require('morgan')
+const config = require('./config/config')
 
 const app = express()
 
