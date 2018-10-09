@@ -12,3 +12,13 @@ app.use(cors())
 
 app.listen(process.env.PORT || config.port,
   () => console.log(`Server start on port ${ config.port } ...`))
+
+// first path
+app.get('/posts', (req, res) => {
+  res.send(
+    [{
+      title: 'Hello world!',
+      description: 'Hi there'
+    }]
+  )
+})
