@@ -1,14 +1,10 @@
 <template>
     <section>
-        Auth
+        {{ msg }}
     </section>
 </template>
 
-<script>
-export default {
-  name: 'auth'
-}
-</script>
+<script src="./auth.js"></script>
 
 <style scoped>
 
