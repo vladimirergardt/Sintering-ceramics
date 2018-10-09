@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server-part",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --ext js --watch src"
+  },
+  "author": "v.ergardt",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
