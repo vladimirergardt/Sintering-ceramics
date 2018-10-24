@@ -13,15 +13,17 @@ export default {
     async getPosts () {
       const response = await PostsService.fetchPosts()
       this.posts = response.data
+
+      await console.log(this.posts);
     }
 
     // getPosts() {
     //   return axios.get('http://localhost:8081/posts')
     //     .then((response) => {
-    //       console.log(response);
+    //       console.log(response)
     //     })
     //     .catch((error) => {
-    //       console.log(error);
+    //       console.log(error)
     //     })
     // }
   },

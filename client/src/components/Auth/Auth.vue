@@ -1,13 +1,15 @@
 <template>
     <section>
-        {{ msg }}
-        {{ posts.description }}
-        {{ posts.title }}
+      {{ this.msg }}
+     <div v-for="item in posts">
+       <p>{{item.title}}</p>
+       <p>{{item.description}}</p>
+     </div>
     </section>
 </template>
 
 <script src="./auth.js"></script>
 
-<style scoped>
+<style lang="css">
 
 </style>

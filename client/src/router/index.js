@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Auth = () => import('@/components/Auth/Auth')
+// const Auth = () => import('@/components/Auth/Auth')
+import Auth from '@/components/Auth/Auth.vue'
 
 Vue.use(Router)
 
