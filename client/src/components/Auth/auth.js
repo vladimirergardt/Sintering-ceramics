@@ -3,17 +3,17 @@ import PostsService from '@/services/PostsService'
 
 export default {
   name: 'auth',
-  data() {
+  data () {
     return {
       msg: 'Auth',
-      posts: [],
+      posts: []
     }
   },
   methods: {
-    async getPosts() {
+    async getPosts () {
       const response = await PostsService.fetchPosts()
-      this.posts = response.data;
-    },
+      this.posts = response.data
+    }
 
     // getPosts() {
     //   return axios.get('http://localhost:8081/posts')
@@ -25,7 +25,7 @@ export default {
     //     })
     // }
   },
-  mounted() {
-    this.getPosts();
-  },
+  mounted () {
+    this.getPosts()
+  }
 }

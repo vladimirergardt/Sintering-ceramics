@@ -1,6 +1,8 @@
 <template>
     <section>
         {{ msg }}
+        {{ posts.description }}
+        {{ posts.title }}
     </section>
 </template>
 
