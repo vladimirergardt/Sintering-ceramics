@@ -4,6 +4,6 @@ import api from '@/services/api'
 
 export default {
   fetchPosts () {
-    return api().get('posts')
+    return api().get('logins')
   }
 }
