@@ -9,6 +9,7 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+app.use(express.static('../client/dist'));
 
 // add mongoose
 const mongoose = require('mongoose')
