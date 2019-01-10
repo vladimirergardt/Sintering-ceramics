@@ -1,0 +1,11 @@
+{
+  "name": "sintering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/src/index.js",
+  "scripts": {
+    "start": "cd server/src && npm run start"
+  },
+  "author": "",
+  "license": "ISC"
+}
