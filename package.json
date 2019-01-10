@@ -4,7 +4,6 @@
   "description": "",
   "main": "server/src/index.js",
   "scripts": {
-    "postinstall": "cd server/src npm install",
     "start": "cd server/src && npm run start"
   },
   "author": "",
