@@ -4,7 +4,8 @@
   "description": "",
   "main": "server/src/index.js",
   "scripts": {
-    "start": "npm install && cd server/src && npm run start"
+    "postinstall": "cd server/src npm install",
+    "start": "cd server/src && npm run start"
   },
   "author": "",
   "license": "ISC"
