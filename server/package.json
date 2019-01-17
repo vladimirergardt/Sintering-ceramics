@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "6.4.1",
   "description": "server-part",
   "main": "src/index.js",
   "scripts": {
@@ -17,6 +17,6 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.7"
   }
 }
