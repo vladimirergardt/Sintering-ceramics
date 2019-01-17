@@ -5,7 +5,7 @@
   "main": "server/src/index.js",
   "scripts": {
     "start": "cd server/src && npm run start",
-    "heroku-prebuild": "cd server/ && npm i"
+    "heroku-prebuild": "cd server/ && npm install"
   },
   "author": "",
   "license": "ISC"
