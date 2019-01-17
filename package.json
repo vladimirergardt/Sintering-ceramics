@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/src/index.js",
   "scripts": {
-    "start": "cd server/src && npm run start",
+    "start": "cd server/ && npm run start",
     "heroku-prebuild": "cd server/ && npm install"
   },
   "author": "",
