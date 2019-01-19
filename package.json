@@ -2,7 +2,7 @@
   "name": "sintering",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/src/index.js",
   "scripts": {
     "start": "cd server/ && npm run start",
     "heroku-prebuild": "cd server/ && npm i",
