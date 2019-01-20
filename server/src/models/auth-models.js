@@ -5,7 +5,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const loginSchema = new Schema({
+const authSchema = new Schema({
     login: {
         type: String,
     },
@@ -14,5 +14,5 @@ const loginSchema = new Schema({
     }
 })
 
-const loginModel = mongoose.model('logins', loginSchema)
-module.exports = loginModel
+const authModel = mongoose.model('logins', authSchema)
+module.exports = authModel
