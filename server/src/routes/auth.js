@@ -8,8 +8,8 @@ const User = require('../models/auth-models')
 
 router.post('/addUser', (req, res) => {
     const user = new User({
-        login: req.login,
-        password: req.password,
+        login: req.body.login,
+        password: req.body.password,
     })
     user.save((err, data) => {
         if (err) {
@@ -24,11 +24,38 @@ router.post('/addUser', (req, res) => {
 })
 
 router.get('/getUsers', (req, res) => {
-    User.find( {} ,(err, data) => {
+    User.find({} ,(err, data) => {
         if (err) {
             res.sendStatus(500)
         } else {
-            res.send( { data } )
+            res.send( { data: data } )
+        }
+    })
+})
+
+router.post('/auth', (req, res) => {
+    const auth = {
+        login: req.body.login,
+        password: req.body.password,
+    }
+    User.find((err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            let status = false;
+
+            data.map((item) => {
+                item.login === auth.login && item.password === auth.password
+                    ? status = true
+                    : false;
+            });
+            res.send({
+                // data,
+                // auth,
+                // success: true,
+                // message: `User: ${data.__id}`
+                status: status,
+            })
         }
     })
 })

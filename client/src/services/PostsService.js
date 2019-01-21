@@ -1,9 +1,9 @@
-import api from '@/services/api'
+// import api from '@/services/api'
 
 // todo: Перенести в Vuex
 
 export default {
-  fetchPosts () {
-    return api().get('logins')
-  }
+  // fetchPosts () {
+  //   return api().get('logins')
+  // }
 }
