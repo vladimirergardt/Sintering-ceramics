@@ -57,7 +57,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.name === 'auth') next();
-  if (localStorage.authStatus === 'false') {
+  if (localStorage.authStatus === 'false' || !localStorage.authStatus) {
     next({ path: '/auth' });
   } else next();
 })
