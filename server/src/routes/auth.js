@@ -10,6 +10,7 @@ router.post('/addUser', (req, res) => {
     const user = new User({
         login: req.body.login,
         password: req.body.password,
+        access: req.body.access,
     })
     user.save((err, data) => {
         if (err) {
@@ -43,18 +44,16 @@ router.post('/auth', (req, res) => {
             console.log(err)
         } else {
             let status = false;
+            let access = 'access denied';
 
             data.map((item) => {
                 item.login === auth.login && item.password === auth.password
-                    ? status = true
+                    ? (status = true) && (access = item.access)
                     : false;
             });
             res.send({
-                // data,
-                // auth,
-                // success: true,
-                // message: `User: ${data.__id}`
                 status: status,
+                access: access,
             })
         }
     })

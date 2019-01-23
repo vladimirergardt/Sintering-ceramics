@@ -11,7 +11,10 @@ const authSchema = new Schema({
     },
     password: {
         type: String,
-    }
+    },
+    access: {
+        type: String,
+    },
 })
 
 const authModel = mongoose.model('logins', authSchema)

@@ -26,15 +26,6 @@ mongoose.connection
   })
    .on('error', error => console.warn(error))
 
-// first path
-// app.get('/logins', (req, res) => {
-//   res.send(
-//     [{
-//       title: 'Hello world!',
-//       description: 'Hi there'
-//     }]
-//   )
-// })
 
 
 
