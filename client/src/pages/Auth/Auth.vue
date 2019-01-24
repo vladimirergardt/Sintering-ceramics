@@ -1,6 +1,6 @@
 <template>
     <section style="display: flex; align-items: center; justify-content: center; height: 100vh">
-      <el-card class="box-card">
+      <el-card class="box-card auth">
         <h3 class="s-auth_h">Вход в систему</h3>
         <el-form :model="authForm" :rules="errors" ref="authForm" label-width="120px" class="auth-form">
           <el-form-item class="s-input" prop="login">
@@ -20,7 +20,7 @@
 <script src="./auth.js"></script>
 
 <style lang="css">
-  .box-card {
+  .auth {
     max-width: 300px;
   }
 

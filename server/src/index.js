@@ -9,6 +9,7 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 app.use(require('./routes/auth'))
+app.use(require('./routes/materials'))
 
 app.use(express.static('../client/dist'))
 
