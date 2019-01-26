@@ -1,4 +1,5 @@
-import axios from 'axios';
+// import axios from 'axios';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'auth',
@@ -18,29 +19,28 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters([
+      'getAuth',
+    ]),
+  },
   methods: {
+    ...mapActions([
+      'setAuth',
+    ]),
     auth() {
       const body = {
         login: this.authForm.login,
         password: this.authForm.password,
       };
 
-      return axios.post('/auth', body)
-          .then((response) => {
-            if (response.data.status) {
-              localStorage.authAccess = 'access true';
-              localStorage.authStatus = 'true';
-              // todo: Записать в стор кто в сери
-              this.$router.push({ path: '/' });
-            } else {
-              this.$message.error('Неверный логин или пароль');
-              this.resetForm('authForm');
-            }
-
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      this.setAuth(body)
+        .then(() => {
+          this.getAuth.status
+            ? this.$router.push({ path: '/' })
+            : this.$message.error('Неверный логин или пароль')
+          && this.resetForm('authForm');
+        });
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {

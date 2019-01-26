@@ -43,9 +43,12 @@ const router = new Router({
       }
     },
     {
-      path: '/material-edit',
+      path: '/material-edit/:id',
       name: 'materialEdit',
-      component: MaterialEdit
+      components: {
+        default: MaterialEdit,
+        menu: Menu
+      }
     },
     {
       path: '/api',

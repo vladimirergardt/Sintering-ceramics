@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="s-menu_options">
-        <div class="s-menu_option">В сети</div>
+        <div class="s-menu_active">В сети: {{ checkUser }}</div>
         <div class="s-menu_option" @click="logout">Выйти</i></div>
       </div>
     </el-row>
