@@ -58,6 +58,18 @@ body {
   margin-top: 0;
 }
 
+.s-header_min {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #0f4c67;
+}
+
+.s-header_xs {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #0f4c67;
+}
+
 .s-list {
   margin: 20px 0;
   padding: 0;
@@ -94,5 +106,25 @@ body {
   width: 40%;
   display: inline-flex;
   flex-direction: column;
+}
+
+.calculate-form {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.calculateForm_block {
+  width: 50%;
+}
+
+.calculate-form .el-form-item__label {
+  line-height: 20px;
+}
+
+.calculate-form .el-form-item__content {
+  width: 160px;
 }
 
