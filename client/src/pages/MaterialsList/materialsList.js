@@ -11,7 +11,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'materialsList'
+      'materialsList',
+      'getAuth',
     ]),
   },
   methods: {
@@ -33,7 +34,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.materialsList);
     this.getMaterialsList();
   },
 }

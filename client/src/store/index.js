@@ -17,8 +17,8 @@ const store = new Vuex.Store({
   },
   state: {
     auth: {
-      status: false,
-      access: 'access denied'
+      status: localStorage.authStatus,
+      access: localStorage.authAccess
     },
     materialsList: [],
   },
@@ -42,7 +42,7 @@ const store = new Vuex.Store({
       return axios.post('/auth', body)
         .then((response) => {
           if (response.data.status) {
-            localStorage.authAccess = 'access true';
+            localStorage.authAccess = response.data.access;
             localStorage.authStatus = 'true';
             commit(types.SET_AUTH_USER, response.data.access);
           }

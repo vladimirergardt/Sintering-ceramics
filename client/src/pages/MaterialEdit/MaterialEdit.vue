@@ -7,18 +7,26 @@
         @click="$router.push({ name: 'materialsList' })">Вернуться</el-button>
 
 
-      <el-form label-position="top" :model="materialForm" :rules="errors" ref="materialForm" label-width="120px" class="material-form">
-        <!--el-form-item v-for="(item, index) in materialForm" :key="index" :label="item.label" class="s-input" :prop="item.propes">
-          <el-input v-model="item.value"></el-input>
-        </el-form-item-->
-        <el-form-item label="Что то" class="s-input" prop="test">
-          <el-input v-model="materialForm.test"></el-input>
+
+      <el-form label-position="top" :model="MainForm.materialsForm" ref="MainForm" label-width="120px" class="materials-form">
+
+        <el-form-item
+          v-for="(domain, index) in MainForm.materialsForm.properties"
+          :label="domain.label"
+          :key="domain.key"
+          :prop="'properties.' + index + '.value'"
+          :rules="rules.value"
+        >
+          <el-input v-model="domain.value"
+                    :style="(domain.key === 'name') ? 'max-width: 300px' : 'max-width: 200px'"></el-input>
+        </el-form-item>
+        <el-form-item style="margin-top: 30px">
+          <el-button v-if="getAuth.access === 'admin'" type="primary"
+                     @click="submitForm('MainForm')">Сохранить</el-button>
         </el-form-item>
 
-        <el-form-item>
-          <el-button type="primary" style="width: 100%; margin-top: 10px" @click="submitForm('materialForm')">Сохранить</el-button>
-        </el-form-item>
       </el-form>
+
 
     </el-card>
   </section>

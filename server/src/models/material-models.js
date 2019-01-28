@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 
 const materialSchema = new Schema({
     name: { type: String },
-    start_size_gain: { type: Number },
+    start_size_grain: { type: Number },
     layer_thickness: { type: Number },
     start_porosity: { type: Number },
     surface_energy: { type: Number },

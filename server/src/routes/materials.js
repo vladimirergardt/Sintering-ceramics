@@ -12,11 +12,12 @@ const Material = require('../models/material-models')
 router.post('/addMaterial', (req, res) => {
     const material = new Material({
         name: req.body.name,
-        start_size_gain: req.body.start_size_gain,
+        start_size_grain: req.body.start_size_grain,
         layer_thickness: req.body.layer_thickness,
         start_porosity: req.body.start_porosity,
         surface_energy: req.body.surface_energy,
         density: req.body.density,
+        viscosity: req.body.viscosity,
         weight: req.body.weight,
         pf_s_diff: req.body.pf_s_diff,
         ea_s_diff: req.body.ea_s_diff,

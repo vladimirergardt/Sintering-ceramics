@@ -84,3 +84,15 @@ body {
   padding: 8px !important;
 }
 
+.materials-form label {
+  /*padding: 0 !important;*/
+  line-height: 20px;
+}
+
+.materials-form .el-form-item {
+  margin-bottom: 10px;
+  width: 40%;
+  display: inline-flex;
+  flex-direction: column;
+}
+
