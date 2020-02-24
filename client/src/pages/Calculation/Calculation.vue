@@ -69,7 +69,7 @@
       </el-form>
       <div v-if="showResult" class="calculation-result">
         <h2 class="s-header_min" style="margin-top: 20px">Результаты: </h2>
-        <div class="s-header_min">Конечная пористость: {{ result.Por }} % </div>
+        <div class="s-header_min">Конечная пористость:{{ result.Por }} % </div>
         <div class="s-header_min">Конечный средний размер зерна: {{ result.Ksrz }} Мкм</div>
         <div class="s-header_min">Конечная плотность материала: {{ result.Kpm }} Кг/м^3</div>
         <div class="s-header_min">Конечная вязкость материала: {{ result.Kvm }} МПа*с</div>

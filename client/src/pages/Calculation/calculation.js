@@ -5,12 +5,12 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'calculation',
-  data() {
+  data () {
     return {
       material: '',
       calculateForm: {
         T0: 20, //Начальная температура в печи *
-        Tk: 1400, //Конечная температура в печи *
+        Tk: 1000, //Конечная температура в печи *
         L0: '', //Начальный средний размер зерна
         P0: '', //Начальный пористость материала
         tau1: 90, //Время неизотермического спекания *
@@ -45,24 +45,24 @@ export default {
     ...mapActions([
       'getMaterialsList',
     ]),
-    calculate() {
-        const form = this.calculateForm;
-        let T0 = form.T0 + 273.15;
-        let Tk = form.Tk + 273.15;
-        let L0 = form.L0 * 0.000001;
-        let P0 = form.P0 / 100;
-        let tau1 = form.tau1 * 60;
-        let d = form.d * 0.000000001;
-        let Db0 = form.Db0;
-        let Ds0 = form.Ds0;
-        let Eb = form.Eb * 1000;
-        let Es = form.Es * 1000;
-        let ro0 = form.ro0;
-        let S = form.S;
-        let tau2 = 0;
-        let eta0 = form.eta0 * 1000000;
-        // let Pg = 0 * 1000000;
-        let m = form.m;
+    calculate () {
+      const form = this.calculateForm;
+      let T0 = form.T0 + 273.15;
+      let Tk = form.Tk + 273.15;
+      let L0 = form.L0 * 0.000001;
+      let P0 = form.P0 / 100;
+      let tau1 = form.tau1 * 60;
+      let d = form.d * 0.000000001;
+      let Db0 = form.Db0;
+      let Ds0 = form.Ds0;
+      let Eb = form.Eb * 1000;
+      let Es = form.Es * 1000;
+      let ro0 = form.ro0;
+      let S = form.S;
+      let tau2 = 0;
+      let eta0 = form.eta0 * 1000000;
+      // let Pg = 0 * 1000000;
+      let m = form.m;
 
       let k = 1.38 * Math.pow(10, -23);
       let time = 0;
@@ -151,6 +151,7 @@ export default {
 
       this.showForm = false;
       this.showResult = !this.showForm;
+      console.log(this.result);
     },
     setMaterialProps(id) {
       const material = this.materialsList.find(x => x._id === id);

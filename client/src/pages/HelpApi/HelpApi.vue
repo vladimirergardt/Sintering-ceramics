@@ -42,11 +42,9 @@
 </template>
 
 <script>
-    export default {
-      name: 'helpApi',
-      data: () => ({
-      })
-    }
+export default {
+  name: 'helpApi'
+}
 </script>
 
 <style>

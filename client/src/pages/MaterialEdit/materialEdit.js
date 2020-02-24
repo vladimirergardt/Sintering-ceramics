@@ -115,10 +115,9 @@ export default {
                 this.$router.push({ name: 'materialsList' });
               })
             : this.updateMaterial(amount)
-            .then(() => {
-              this.$router.push({ name: 'materialsList' });
-            })
-
+              .then(() => {
+                this.$router.push({name: 'materialsList'});
+              })
         } else {
           console.log('error submit!!');
           return false;
