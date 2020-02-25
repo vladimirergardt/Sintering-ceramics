@@ -3,10 +3,11 @@
  */
 import { mapGetters, mapActions } from 'vuex'
 import density from '@/utils/mixins/modalDensity';
+import charts from '@/utils/mixins/charts';
 
 export default {
   name: 'calculation',
-  mixins: [density],
+  mixins: [density, charts],
   data () {
     return {
       material: '',
@@ -50,7 +51,13 @@ export default {
     ...mapActions([
       'getMaterialsList',
     ]),
-    calculate () {
+    async calculate () {
+      this.charts.t.rows = [];
+      this.charts.por.rows = [];
+      this.charts.plot.rows = [];
+      this.charts.zern.rows = [];
+      this.charts.usad.rows = [];
+
       const form = this.calculateForm;
       let T0 = form.T0 + 273.15;
       let Tk = form.Tk + 273.15;
@@ -159,6 +166,14 @@ export default {
         ro = (1 - P) * ro0;
 
         U = m * ((1 / roNach) - (1 / ro));
+
+        if (this.checkIzoterm){
+          this.charts.t.rows.push([time / 60, (T - 273.15)]);
+          this.charts.por.rows.push([time / 60, (P * 100)]);
+          this.charts.plot.rows.push([time / 60, (ro)]);
+          this.charts.zern.rows.push([time / 60, (L / 0.000001)]);
+          this.charts.usad.rows.push([time / 60, (U * Math.pow(10, 4))]);
+        }
       }
 
       P20 = P;
@@ -182,6 +197,11 @@ export default {
           ro = (1 - P) * ro0;
 
           U = m * ((1 / roNach) - (1 / ro));
+          this.charts.t.rows.push([time / 60, (T - 273.15)]);
+          this.charts.por.rows.push([time / 60, (P * 100)]);
+          this.charts.plot.rows.push([time / 60, (ro)]);
+          this.charts.zern.rows.push([time / 60, (L / 0.000001)]);
+          this.charts.usad.rows.push([time / 60, (U * Math.pow(10, 4))]);
         }
       }
 
@@ -197,8 +217,8 @@ export default {
       this.result.Kpm = ro.toFixed(2);
       this.result.Kvm = ett.toFixed(2);
 
-      this.showForm = false;
-      this.showResult = !this.showForm;
+      this.showForm = await false;
+      this.showResult = await !this.showForm;
     },
 
     getModalDensity() {

@@ -120,6 +120,16 @@
         <div class="s-header_min">Конечная плотность материала: {{ result.Kpm }} Кг/м<sup>3</sup></div>
         <div class="s-header_min">Конечная вязкость материала: {{ result.Kvm }} МПа*с</div>
 
+        <div style="display: flex; justify-content: center" v-for="chart in charts">
+          <vue-chart
+            style="height: 300px"
+            chart-type="LineChart"
+            :columns="chart.columns"
+            :rows="chart.rows"
+            :options="chart.options"
+          ></vue-chart>
+        </div>
+
         <el-button style="margin: 20px 0" type="primary" icon="el-icon-arrow-left"
                    @click="showForm = !showForm; showResult = !showResult">Вернуться</el-button>
       </div>
