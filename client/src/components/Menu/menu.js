@@ -33,7 +33,7 @@ export default {
     checkUser() {
       return this.getAuth.access === 'stud'
         ? 'студент'
-        : 'администратор (test)';
+        : 'администратор';
     },
   },
   methods: {

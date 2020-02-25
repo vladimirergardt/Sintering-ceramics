@@ -8,12 +8,13 @@ export default {
   data () {
     return {
       material: '',
+      checkIzoterm: true,
       calculateForm: {
         T0: 20, //Начальная температура в печи *
-        Tk: 1000, //Конечная температура в печи *
+        Tk: 1350, //Конечная температура в печи *
         L0: '', //Начальный средний размер зерна
         P0: '', //Начальный пористость материала
-        tau1: 90, //Время неизотермического спекания *
+        tau1: 70, //Время неизотермического спекания *
         d: '', //Толщина поверхностного слоя
         Db0: '', //предэкспоненциальный множитель (з. д.)
         Ds0: '', //предэкспоненциальный множитель (с. д.)
@@ -21,9 +22,9 @@ export default {
         Es: '', //Энергия активации (с. д.)
         ro0: '', //Плотность компактного материала
         S: '', //Удельная поверхностная энергия
-        // tau2: 50, //Время изотермического спекания *
+        tau2: 30, //Время изотермического спекания *
         eta0: '', //вязкость беспористого материала
-        // Pg: 10, //Давление инертного газа *
+        Pg: 6, //Давление инертного газа *
         m: '', //масса материала
       },
       result: {
@@ -59,9 +60,9 @@ export default {
       let Es = form.Es * 1000;
       let ro0 = form.ro0;
       let S = form.S;
-      let tau2 = 0;
+      let tau2 = form.tau2 * 60;
       let eta0 = form.eta0 * 1000000;
-      // let Pg = 0 * 1000000;
+      let Pg = form.Pg * 1000000;
       let m = form.m;
 
       let k = 1.38 * Math.pow(10, -23);
@@ -74,11 +75,13 @@ export default {
       let roNach = ro0 * (1 - P);
       let ro = roNach;
       let U = m * ((1 / roNach) - (1 / ro));
+      let P20;
 
       let R = 8.31;
+      let Rp0 = 0.0000009; //начальный радиус поры при спекании под давлением
 
       const eta = (P) => {
-        return eta0 * Math.pow(1 - P, 5.0 / 3);
+        return eta0 * Math.pow(1 - P, (5 / 3));
       };
 
       const db = (T) => {
@@ -100,15 +103,38 @@ export default {
         return -a / b;
       };
 
+      const rp = (p) => {
+        const a = (1 - P20) * p;
+        const b = P20 * (1 - p);
+        return Rp0 * Math.pow(a / b, 1 / 3);
+      };
+
+      const pc = (P2) => {
+        return 2 * P2 / rp(P2);
+      };
+
+      const hi = (p) => {
+        return (400 * eta(p) * (1 - p)) / (3 * p);
+      };
+
+      const dP2dt = (t, P2) => {
+        return -((pc(P2) + Pg) * (1 - P2)) / hi(P2);
+      };
+
       const dLdt = (t, L) => {
         const a = 8 * R * ds(currentTemperatue(t)) * d * d * d * d * S;
         const b = L * L * L * k * Es;
         return (a / b) * (1 + ((Es) / (R * currentTemperatue(t))));
       };
 
+      const dL2dt = (t, L) => {
+        const a = 8 * ds(currentTemperatue(t)) * d * d * d * d * S;
+        const b = L * L * L * k * currentTemperatue(t);
+        return (a / b);
+      };
 
-      for (time = 0; time < tau1; time = time + h)
-      {
+      for (time = 0; time < tau1; time = time + h) {
+        time = +time.toFixed(3);
         T = currentTemperatue(time);
 
         k0 = h * dPdt(time, L, P);
@@ -130,24 +156,41 @@ export default {
         U = m * ((1 / roNach) - (1 / ro));
       }
 
+      P20 = P;
+
+      if (!this.checkIzoterm) {
+        for (; time < tau1 + tau2; time = time + h) {
+          time = +time.toFixed(3);
+          k0 = h * dP2dt(time, P);
+          k1 = h * dP2dt(time + (h / 2), P + (k0 / 2));
+          k2 = h * dP2dt(time + (h / 2), P + (k1 / 2));
+          k3 = h * dP2dt(time + h, P + k2);
+
+          P = P + ((k0 + 2 * k1 + 2 * k2 + k3) / 6);
+
+          k0 = h * dL2dt(time, L);
+          k1 = h * dL2dt(time + (h / 2), L + (k0 / 2));
+          k2 = h * dL2dt(time + (h / 2), L + (k1 / 2));
+          k3 = h * dL2dt(time + h, L + k2);
+
+          L = L + ((k0 + 2 * k1 + 2 * k2 + k3) / 6);
+          ro = (1 - P) * ro0;
+
+          U = m * ((1 / roNach) - (1 / ro));
+        }
+      }
+
+
       let PP, LL, ett, PPP;
       PP = P * 100;
       LL = L / 0.000001;
       ett = eta(P) / 1000000;
       PPP = Math.floor(PP);
 
-      this.result.Por = PP.toFixed(3);
-      this.result.Ksrz = LL.toFixed(3);
-      this.result.Kpm = ro.toFixed(3);
-      this.result.Kvm = ett.toFixed(3);
-
-      // console.log(
-      //   `
-      // Пористость: ${PP.toFixed(3)},
-      // Конечный ср. размер зерна: ${LL.toFixed(3)},
-      // Конечная плотность: ${ro.toFixed(3)},
-      // Конечная вязкость: ${ett.toFixed(3)}.
-      //   `);
+      this.result.Por = PP.toFixed(2);
+      this.result.Ksrz = LL.toFixed(2);
+      this.result.Kpm = ro.toFixed(2);
+      this.result.Kvm = ett.toFixed(2);
 
       this.showForm = false;
       this.showResult = !this.showForm;

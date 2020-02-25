@@ -36,19 +36,23 @@
           <el-form-item label="Масса материала" prop="m" :rules="{required: true, message: ' '}">
             <el-input v-model="calculateForm.m"></el-input>
           </el-form-item>
-        </div>
-        <div class="calculateForm_block">
+          <!-- -->
           <h2 class="s-header_min">Стадия поверхностной самодиффузии</h2>
           <el-form-item label="Предэкспоненциальный множитель" :rules="{required: true, message: ' '}" prop="Ds0">
             <el-input v-model="calculateForm.Ds0"></el-input>
           </el-form-item>
           <el-form-item label="Энергия активации" :rules="{required: true, message: ' '}" prop="Eb">
-            <el-input v-model="calculateForm.Eb"></el-input>
-          </el-form-item>
-          <h2 class="s-header_min">Стадия зернографичной диффузии</h2>
-          <el-form-item label="Энергия активации" :rules="{required: true, message: ' '}" prop="Es">
             <el-input v-model="calculateForm.Es"></el-input>
           </el-form-item>
+          <h2 class="s-header_min">Стадия зернографичной диффузии</h2>
+          <el-form-item label="Предэкспоненциальный множитель" :rules="{required: true, message: ' '}" prop="Ds0">
+            <el-input v-model="calculateForm.Db0"></el-input>
+          </el-form-item>
+          <el-form-item label="Энергия активации" :rules="{required: true, message: ' '}" prop="Es">
+            <el-input v-model="calculateForm.Eb"></el-input>
+          </el-form-item>
+        </div>
+        <div class="calculateForm_block">
           <h2 class="s-header_min">Варьируемые параметры</h2>
           <h1 class="s-header_xs">Стадия неизотермического спекания</h1>
           <el-form-item label="Время неизотермического спекания" :rules="{required: true, message: ' '}" prop="tau1">
@@ -60,6 +64,19 @@
           <el-form-item label="Конечная температура в печи" :rules="{required: true, message: ' '}" prop="Tk">
             <el-input v-model="calculateForm.Tk"></el-input>
           </el-form-item>
+
+          <h1 class="s-header_xs">Стадия изотермического спекания</h1>
+          <h1 class="s-header_xs">
+            <el-checkbox
+              v-model="checkIzoterm"
+              label="Исключить стадию из расчета"/>
+            </h1>
+          <el-form-item label="Время выдержки, мин" :rules="{required: true, message: ' '}" prop="tau1">
+            <el-input v-model="calculateForm.tau2"></el-input>
+          </el-form-item>
+          <el-form-item label="Давление, МПа" :rules="{required: true, message: ' '}" prop="T0">
+            <el-input v-model="calculateForm.Pg"></el-input>
+          </el-form-item>
         </div>
 
         <el-form-item style="margin-top: 30px; width: 100%;">
@@ -69,7 +86,7 @@
       </el-form>
       <div v-if="showResult" class="calculation-result">
         <h2 class="s-header_min" style="margin-top: 20px">Результаты: </h2>
-        <div class="s-header_min">Конечная пористость:{{ result.Por }} % </div>
+        <div class="s-header_min">Конечная пористость: {{ result.Por }} % </div>
         <div class="s-header_min">Конечный средний размер зерна: {{ result.Ksrz }} Мкм</div>
         <div class="s-header_min">Конечная плотность материала: {{ result.Kpm }} Кг/м^3</div>
         <div class="s-header_min">Конечная вязкость материала: {{ result.Kvm }} МПа*с</div>
