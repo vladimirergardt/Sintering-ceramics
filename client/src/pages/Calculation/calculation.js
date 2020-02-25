@@ -2,9 +2,11 @@
  * Created by Ergardt.Vladimir on 23.01.2019.
  */
 import { mapGetters, mapActions } from 'vuex'
+import density from '@/utils/mixins/modalDensity';
 
 export default {
   name: 'calculation',
+  mixins: [density],
   data () {
     return {
       material: '',
@@ -35,6 +37,8 @@ export default {
       },
       showForm: true,
       showResult: false,
+      modalDensity: '',
+      loadDensity: false,
     }
   },
   computed: {
@@ -133,6 +137,7 @@ export default {
         return (a / b);
       };
 
+
       for (time = 0; time < tau1; time = time + h) {
         time = +time.toFixed(3);
         T = currentTemperatue(time);
@@ -194,9 +199,21 @@ export default {
 
       this.showForm = false;
       this.showResult = !this.showForm;
-      console.log(this.result);
     },
+
+    getModalDensity() {
+      this.$refs['calculateForm'].validate( async(valid) => {
+        if (valid) {
+          await this.getDensity();
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+
     setMaterialProps(id) {
+      this.modalDensity = '';
       const material = this.materialsList.find(x => x._id === id);
       this.calculateForm.L0 = material.start_size_grain;
       this.calculateForm.P0 = material.start_porosity;
