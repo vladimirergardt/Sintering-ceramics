@@ -167,13 +167,11 @@ export default {
 
         U = m * ((1 / roNach) - (1 / ro));
 
-        if (this.checkIzoterm){
-          this.charts.t.rows.push([time / 60, (T - 273.15)]);
-          this.charts.por.rows.push([time / 60, (P * 100)]);
-          this.charts.plot.rows.push([time / 60, (ro)]);
-          this.charts.zern.rows.push([time / 60, (L / 0.000001)]);
-          this.charts.usad.rows.push([time / 60, (U * Math.pow(10, 4))]);
-        }
+        this.charts.t.rows.push([time / 60, (T - 273.15)]);
+        this.charts.por.rows.push([time / 60, (P * 100)]);
+        this.charts.plot.rows.push([time / 60, (ro)]);
+        this.charts.zern.rows.push([time / 60, (L / 0.000001)]);
+        this.charts.usad.rows.push([time / 60, (U * Math.pow(10, 4))]);
       }
 
       P20 = P;

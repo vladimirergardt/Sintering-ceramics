@@ -78,7 +78,7 @@
             </el-form-item>
           </div>
           <div class="calculateForm_block">
-            <h2 class="s-header_min">Стадия зернографичной диффузии</h2>
+            <h2 class="s-header_min">Стадия зернограничной диффузии</h2>
             <el-form-item :rules="{required: true, message: ' '}" prop="Ds0">
               <span slot="label">Предэкспоненциальный множитель, м<sup>2</sup>/с</span>
               <el-input v-model="calculateForm.Db0"></el-input>
@@ -109,7 +109,7 @@
 
         <el-form-item style="margin-top: 30px; width: 100%;">
           <el-button type="primary"
-                     @click="submitForm('calculateForm')">Рассчитать</el-button>
+                     @click="submitForm('calculateForm')">Расчитать</el-button>
         </el-form-item>
       </el-form>
 

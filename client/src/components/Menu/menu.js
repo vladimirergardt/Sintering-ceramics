@@ -9,7 +9,7 @@ export default {
     return {
       menuItems: [
         {
-          name: 'Рассчет',
+          name: 'Расчет',
           pathName: 'calculation',
           path: '',
         },
