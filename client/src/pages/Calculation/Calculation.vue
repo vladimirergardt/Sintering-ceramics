@@ -116,8 +116,8 @@
       <div v-if="showResult" class="calculation-result">
         <h2 class="s-header_min" style="margin-top: 20px">Результаты: </h2>
         <div class="s-header_min">Конечная пористость: {{ result.Por }} % </div>
-        <div class="s-header_min">Конечный средний размер зерна: {{ result.Ksrz }} Мкм</div>
-        <div class="s-header_min">Конечная плотность материала: {{ result.Kpm }} Кг/м<sup>3</sup></div>
+        <div class="s-header_min">Конечный средний размер зерна: {{ result.Ksrz }} мкм</div>
+        <div class="s-header_min">Конечная плотность материала: {{ result.Kpm }} кг/м<sup>3</sup></div>
         <div class="s-header_min">Конечная вязкость материала: {{ result.Kvm }} МПа*с</div>
 
         <div style="display: flex; justify-content: center" v-for="chart in charts">

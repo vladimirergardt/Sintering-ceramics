@@ -14,7 +14,7 @@ export default {
           options: {
             title: 'Температура',
             hAxis: {
-              title: 'Время, мин',
+              title: 'Время, с',
               minValue: '0',
               maxValue: '100'
             },
@@ -40,7 +40,7 @@ export default {
           options: {
             title: 'Пористость',
             hAxis: {
-              title: 'Время, мин',
+              title: 'Время, с',
               minValue: '0',
               maxValue: '100'
             },
@@ -66,7 +66,7 @@ export default {
           options: {
             title: 'Плотность',
             hAxis: {
-              title: 'Время, мин',
+              title: 'Время, с',
               minValue: '0',
               maxValue: '100'
             },
@@ -92,7 +92,7 @@ export default {
           options: {
             title: 'Размер зерна',
             hAxis: {
-              title: 'Время, мин',
+              title: 'Время, с',
               minValue: '0',
               maxValue: '100'
             },
@@ -118,7 +118,7 @@ export default {
           options: {
             title: 'Усадка',
             hAxis: {
-              title: 'Время, мин',
+              title: 'Время, с',
               minValue: '0',
               maxValue: '100'
             },
