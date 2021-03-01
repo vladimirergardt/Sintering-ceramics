@@ -14,7 +14,7 @@
     "axios": "^0.18.0",
     "element-ui": "^2.4.11",
     "plotly.js-dist": "^1.52.2",
-    "three": "^0.105.2",
+    "three": "^0.125.0",
     "vue": "^2.5.2",
     "vue-morris": "^1.1.0",
     "vue-router": "^3.0.1",
